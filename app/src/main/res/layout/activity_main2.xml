@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:text="test input"/>
 
+
     <fragment
         android:layout_below="@id/edtxt"
         android:layout_width="match_parent"
@@ -34,6 +35,7 @@
         android:id="@+id/map"
         tools:context="com.example.user.googlemapstest.MapsActivity"
         android:name="com.google.android.gms.maps.SupportMapFragment" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatbtn"
         android:layout_alignTop="@+id/map"

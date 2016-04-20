@@ -4,5 +4,17 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="thin_margin">4dp</dimen>
-    <dimen name="card_height">96dp</dimen>
+
+    <dimen name="card_image_max_height">90dp</dimen>
+    <dimen name="card_image_max_width">90dp</dimen>
+
+    <dimen name="card2_image_height">160dp</dimen>
+
+    <dimen name="button_size">36dp</dimen>
+    <dimen name="card_title_max_width">240dp</dimen>
+
+    <dimen name="title_text_size">36sp</dimen>
+    <dimen name="content_text_size">18sp</dimen>
+
+    <dimen name="card_min_height">320dp</dimen>
 </resources>

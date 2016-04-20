@@ -37,5 +37,15 @@
     <color name="colorGreen5">#00DD00</color>
     <color name="colorGreen6">#00AA00</color>
     <color name="colorGreen7">#008800</color>
+    
+    <color name="Style_Background">#8B9474</color>
+    <color name="Style_Primary">#8BBD8B</color>
+    <color name="Style_PrimaryDark">#6CAE75</color>
+    <color name="Style_PrimaryDarker">#559955</color>
+    <color name="Style_Accent">#F46464</color>
+    <color name="Style_White">#F7F8F1</color>
+    <color name="Style_WhiteTransparent">#cdf7f8f1</color>
+    <color name="Style_Black">#060000</color>
+    <color name="Style_Black2">#333333</color>
 
 </resources>

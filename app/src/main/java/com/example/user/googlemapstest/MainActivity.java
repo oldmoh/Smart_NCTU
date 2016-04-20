@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
+
+import com.google.android.gms.location.internal.LocationRequestUpdateData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setViewComponent() {
-        //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        //actionBar.setTitle(main);
         // ToolBar
         android.support.v7.widget.Toolbar myToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         myToolbar.setTitle("Main");
@@ -52,27 +53,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        //Button 1
-        Button btn1 = (Button) findViewById(R.id.btn1);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent IntentMap = new Intent();
-                IntentMap.setClass(MainActivity.this, MapsActivity.class);
-                startActivity(IntentMap);
-            }
-        });
         //RecyclerView
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerViewAdapter(getDataSet(), 0);
+        ArrayList<DataObject> data = getDataSet();
+        adapter = new RecyclerViewAdapter(data);
         recyclerView.setAdapter(adapter);
         // set the behavior of card after clicking
         ((RecyclerViewAdapter) adapter).setOnItemClickListener(new RecyclerViewAdapter.MyClickListener() {
             @Override
             public void onItemClick(int position, View view) {
+                Log.d("Card", "Click");
+                ((RecyclerViewAdapter) adapter).deleteItem(position);
+                adapter.notifyItemRemoved(position);
                 Toast.makeText(MainActivity.this, "Item" + position + "is clicked!", Toast.LENGTH_LONG).show();
             }
         });
@@ -80,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<DataObject> getDataSet() {
         ArrayList<DataObject> results = new ArrayList<DataObject>();
-        for(int index = 0; index < 20; index++) {
-            DataObject dataObject = new DataObject("Title." + index, "Content " + index);
+        for(int index = 0; index < 36; index++) {
+            DataObject dataObject = new DataObject("Title." + index, "Content " + index, index%3);
             results.add(index, dataObject);
         }
         return results;
@@ -103,6 +98,13 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_settings:
                 Log.d("Setting","Clicked");
+                return true;
+            case R.id.action_Map:
+                Intent IntentMap = new Intent();
+                IntentMap.setClass(MainActivity.this, Main2Activity.class);
+                startActivity(IntentMap);
+                return true;
+            case R.id.action_test:
                 return true;
             default:
                 // If we got here, the user's action was not recognized.

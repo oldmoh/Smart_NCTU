@@ -4,7 +4,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorGreen6">
+    android:background="@color/Style_PrimaryDarker">
     <Button
         android:id="@+id/tbtn"
         android:layout_width="wrap_content"

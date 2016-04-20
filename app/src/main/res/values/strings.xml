@@ -8,4 +8,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="action_settings">S</string>
     <string name="action_favorite">F</string>
+    <string name="no_title">No title</string>
+    <string name="no_text_content">No Content</string>
+    <string name="club_title">Club Title~</string>
 </resources>
