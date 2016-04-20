@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyMaterialDesign" parent="MyMaterialDesign.Base"/>
+    <style name="MyMaterialDesign.Base" parent="Theme.AppCompat">
+        <item name="android:windowActionBar">true</item>
+        <item name="android:windowNoTitle">false</item>
+        <!--    主要顏色    -->
+        <item name="colorPrimary">@color/colorGreen6</item>
+        <!--    狀態欄背景顏色    -->
+        <item name="colorPrimaryDark">@color/colorGreen7</item>
+        <!--    text color primary    -->
+
+        <!--    window background    -->
+        <item name="windowActionBar">@color/colorBlackWhite1</item>
+        <!--    Navigation Bar    -->
+
+        <!--    ??    -->
+
+    </style>
+    <style name="MyMaterialDesign.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

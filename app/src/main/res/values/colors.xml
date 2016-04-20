@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorBlackWhite1">#FFFFFF</color>
+    <color name="colorBlackWhite2">#DDDDDD</color>
+    <color name="colorBlackWhite3">#AAAAAA</color>
+    <color name="colorBlackWhite4">#888888</color>
+    <color name="colorBlackWhite5">#666666</color>
+    <color name="colorBlackWhite6">#444444</color>
+    <color name="colorBlackWhite7">#000000</color>
+    <color name="colorBlue1">#CCCCFF</color>
+    <color name="colorBlue2">#9999FF</color>
+    <color name="colorBlue3">#5555FF</color>
+    <color name="colorBlue4">#0000FF</color>
+    <color name="colorBlue5">#0000CC</color>
+    <color name="colorBlue6">#0000AA</color>
+    <color name="colorBlue7">#000088</color>
+    <color name="colorLightestBlue">#BBFFEE</color>
+    <color name="colorLightSkyBlue">#CCDDFF</color>
+    <color name="colorOrange2">#FFBB66</color>
+    <color name="colorOrange3">#FFAA33</color>
+    <color name="colorOrange4">#FF8800</color>
+    <color name="colorOrange5">#FF7700</color>
+    <color name="colorOrange6">#CC6600</color>
+    <color name="colorRed1">#FFCCCC</color>
+    <color name="colorRed2">#FF8888</color>
+    <color name="colorRed3">#FF3333</color>
+    <color name="colorRed4">#FF0000</color>
+    <color name="colorRed5">#CC0000</color>
+    <color name="colorRed6">#AA0000</color>
+    <color name="colorGreen1">#99FF99</color>
+    <color name="colorGreen2">#66FF66</color>
+    <color name="colorGreen3">#33FF33</color>
+    <color name="colorGreen4">#00FF00</color>
+    <color name="colorGreen5">#00DD00</color>
+    <color name="colorGreen6">#00AA00</color>
+    <color name="colorGreen7">#008800</color>
+
+</resources>
