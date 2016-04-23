@@ -88,6 +88,7 @@ public class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<Str
             polylineOptions.width(5);
             polylineOptions.color(Color.BLUE);
         }
+
     }
 
     private List<LatLng> decodePoly(String encoded) {

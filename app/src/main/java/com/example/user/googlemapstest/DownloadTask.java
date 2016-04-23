@@ -16,6 +16,7 @@ public class DownloadTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... Url) {
+
         String data = "";
         InputStream inputStream = null;
         HttpURLConnection httpURLConnection = null;

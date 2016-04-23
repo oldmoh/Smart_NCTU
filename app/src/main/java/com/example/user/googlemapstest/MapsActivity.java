@@ -1,5 +1,6 @@
 package com.example.user.googlemapstest;
 
+import android.app.ActionBar;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -126,7 +127,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-           ParserTask parserTask = new ParserTask();
+            ParserTask parserTask = new ParserTask();
             parserTask.execute(result);
         }
     }

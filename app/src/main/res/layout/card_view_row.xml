@@ -39,6 +39,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:alpha="0.5"
                 />
+
             <ImageButton
                 android:id="@+id/card_pin"
                 android:layout_width="@dimen/button_size"

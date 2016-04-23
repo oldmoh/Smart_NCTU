@@ -6,22 +6,23 @@ import org.w3c.dom.ProcessingInstruction;
  * Created by User on 2016/3/23.
  */
 public class DataObject {
-    private String tittle,content;
+    private String title,content,date;
     private int ViewType;
 
     // constructor
-    DataObject(String tittle, String content, int ViewType) {
-        this.tittle = tittle;
+    DataObject(String title, String content, String date, int ViewType) {
+        this.title = title;
         this.content = content;
+        this.date = date;
         this.ViewType = ViewType;
     }
 
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
     public void setTittle(String tittle) {
-        this.tittle = tittle;
+        this.title = tittle;
     }
 
     public String getContent() {
@@ -30,6 +31,14 @@ public class DataObject {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public int getViewType() {

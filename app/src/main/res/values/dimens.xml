@@ -17,4 +17,6 @@
     <dimen name="content_text_size">18sp</dimen>
 
     <dimen name="card_min_height">320dp</dimen>
+
+    <dimen name="content_width">300dp</dimen>
 </resources>
