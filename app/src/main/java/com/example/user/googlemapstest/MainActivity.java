@@ -41,10 +41,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+    RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private static String main = "Main";
     private ArrayList<DataObject> data = null;
 
     @Override
@@ -60,27 +59,6 @@ public class MainActivity extends AppCompatActivity {
         android.support.v7.widget.Toolbar myToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         myToolbar.setTitle("Main");
         setSupportActionBar(myToolbar);
-        // toolbar edittext
-        EditText editText = (EditText) findViewById(R.id.toolbar_edtxt);
-        // get input immediately as the string changed
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        //
-
         //RecyclerView
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -94,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position, View view) {
                 Log.d("Card", "Click");
+                data.remove(position);
                 ((RecyclerViewAdapter) adapter).deleteItem(position);
                 adapter.notifyItemRemoved(position);
 
@@ -103,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ArrayList<DataObject> getDataSet() {
-        ArrayList<DataObject> results = new ArrayList<DataObject>();
+        ArrayList<DataObject> results = new ArrayList<>();
         for(int index = 0; index < 36; index++) {
             DataObject dataObject = new DataObject("Title." + index, "Content " + index, "2016/4/26", index%3);
             results.add(index, dataObject);
@@ -132,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.toolbar_option, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

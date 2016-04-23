@@ -43,7 +43,7 @@ public class DownloadTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        ParserTask parserTask = new ParserTask();
-        parserTask.execute(result);
+        //MapSettings.ParserTask parserTask = new MapSettings.ParserTask();
+        //parserTask.execute(result);
     }
 }
