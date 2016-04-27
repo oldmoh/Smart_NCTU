@@ -1,29 +1,23 @@
 package com.example.user.googlemapstest;
 
-import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.DragEvent;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.gms.location.internal.LocationRequestUpdateData;
 
@@ -36,42 +30,40 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private ArrayList<DataObject> data = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.drawer);
+        // Card Recycler
+        setRecyclerView();
         // View Component
         setViewComponent();
     }
 
-    public void setViewComponent() {
-        // ToolBar
-        android.support.v7.widget.Toolbar myToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
-        myToolbar.setTitle("Main");
-        setSupportActionBar(myToolbar);
-        //RecyclerView
+    private void setRecyclerView() {
+        // RecyclerView
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         data = readData();
-        adapter = new RecyclerViewAdapter(data);
+        adapter = new RecyclerViewAdapter(data, this);
         recyclerView.setAdapter(adapter);
-        // set the behavior of card after clicking
+        // Behavior of Card Selected
         ((RecyclerViewAdapter) adapter).setOnItemClickListener(new RecyclerViewAdapter.MyClickListener() {
             @Override
             public void onItemClick(int position, View view) {
-                Log.d("Card", "Click");
                 data.remove(position);
                 ((RecyclerViewAdapter) adapter).deleteItem(position);
                 adapter.notifyItemRemoved(position);
@@ -81,13 +73,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private ArrayList<DataObject> getDataSet() {
-        ArrayList<DataObject> results = new ArrayList<>();
-        for(int index = 0; index < 36; index++) {
-            DataObject dataObject = new DataObject("Title." + index, "Content " + index, "2016/4/26", index%3);
-            results.add(index, dataObject);
-        }
-        return results;
+    private void setViewComponent() {
+        // ToolBar
+        android.support.v7.widget.Toolbar myToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
+        myToolbar.setTitle("Main");
+        setSupportActionBar(myToolbar);
+        // DrawerLayout
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, myToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
+        // Navigation
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -104,28 +102,18 @@ public class MainActivity extends AppCompatActivity {
         data = readData();
     }
 
-    // Set Menu and behavior of Menu Item clicked
+    // Set Menu
     @Override
     public boolean  onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toolbar_option, menu);
         return true;
     }
+    // Behaviors of Option Menu Item Selected
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_favorite:
-                Log.d("f","sdf");
-                return true;
             case R.id.action_settings:
-                Log.d("Setting","Clicked");
-                return true;
-            case R.id.action_Map:
-                Intent IntentMap = new Intent();
-                IntentMap.setClass(MainActivity.this, Main2Activity.class);
-                startActivity(IntentMap);
-                return true;
-            case R.id.action_test:
                 return true;
             default:
                 // If we got here, the user's action was not recognized.
@@ -134,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Read Data from SD card
     private ArrayList<DataObject> readData() {
         String path = Environment.getExternalStorageDirectory().getPath();
         Log.d("Path", path);
@@ -165,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return dataList;
     }
-
+    // Write Data into SD card
     private void writeData(ArrayList<DataObject> data) {
         // enviroment path
         String path = Environment.getExternalStorageDirectory().getPath();
@@ -202,4 +191,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Behavior of Navigation
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.nav_map:  // go to GoogleMap
+                Intent IntentMap = new Intent();
+                IntentMap.setClass(MainActivity.this, Main2Activity.class);
+                startActivity(IntentMap);
+                break;
+            case R.id.nav_calender:
+            case R.id.nav_profile:
+            default:
+        }
+        // close navigation bar
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

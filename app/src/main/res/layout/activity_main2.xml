@@ -29,6 +29,8 @@
         android:layout_height="wrap_content"
         android:alpha="0.8"
         android:background="@color/Style_White"
+        android:textSize="24dp"
+        android:visibility="invisible"
         />
     <EditText
         android:id="@+id/end"
@@ -37,6 +39,8 @@
         android:layout_height="wrap_content"
         android:alpha="0.8"
         android:background="@color/Style_White"
+        android:textSize="24dp"
+        android:visibility="invisible"
         />
 
     <android.support.design.widget.FloatingActionButton

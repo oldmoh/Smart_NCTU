@@ -1,6 +1,8 @@
 package com.example.user.googlemapstest;
 
 import android.app.Notification;
+import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.DataObjectHolder> {
     private ArrayList<DataObject> dataSet;
+    private Context context;
     private static MyClickListener myClickListener;
     public static final int SCHOOL = 0, CLUB = 1, E_CAMPUS = 2;
 
@@ -43,10 +46,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         // constructor of DataObjectHolder
         public DataObjectHolder(View itemView) {
             super(itemView);
-            title = (TextView)itemView.findViewById(R.id.title);
-            date = (TextView)itemView.findViewById(R.id.date);
-            content = (TextView) itemView.findViewById(R.id.content);
-            imageView = (ImageView) itemView.findViewById(R.id.image);
+            title = (TextView)itemView.findViewById(R.id.design1_title);
+            date = (TextView)itemView.findViewById(R.id.design1_date);
+            content = (TextView) itemView.findViewById(R.id.design1_content);
+            imageView = (ImageView) itemView.findViewById(R.id.design1_image);
             itemView.setOnClickListener(this);
         }
 
@@ -57,29 +60,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     // constructor of RecyclerView
-    public RecyclerViewAdapter(ArrayList<DataObject> dataSet) {
+    public RecyclerViewAdapter(ArrayList<DataObject> dataSet, Context context) {
         this.dataSet = dataSet;
+        this.context = context;
     }
 
     @Override
     public DataObjectHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.gridcard1, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_design_1, parent, false);
         DataObjectHolder dataObjectHolder = new DataObjectHolder(view);
         return dataObjectHolder;
     }
 
     @Override
     public void onBindViewHolder(final DataObjectHolder dataObjectHolder, final int position) {
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-Light.ttf");
+        dataObjectHolder.title.setTypeface(typeface);
         dataObjectHolder.title.setText(dataSet.get(position).getTitle());
+        dataObjectHolder.date.setTypeface(typeface);
         dataObjectHolder.date.setText(dataSet.get(position).getDate());
+        dataObjectHolder.content.setTypeface(typeface);
         dataObjectHolder.content.setText(dataSet.get(position).getContent());
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        }).run();
     }
 
     @Override

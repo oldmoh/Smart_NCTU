@@ -2,6 +2,8 @@ package com.example.user.googlemapstest;
 
 import org.w3c.dom.ProcessingInstruction;
 
+import java.util.ArrayList;
+
 /**
  * Created by User on 2016/3/23.
  */
@@ -47,5 +49,14 @@ public class DataObject {
 
     void setViewType(int ViewType) {
         this.ViewType = ViewType;
+    }
+
+    private ArrayList<DataObject> getDataSet() {
+        ArrayList<DataObject> results = new ArrayList<>();
+        for(int index = 0; index < 36; index++) {
+            DataObject dataObject = new DataObject("Title." + index, "Content " + index, "2016/4/26", index%3);
+            results.add(index, dataObject);
+        }
+        return results;
     }
 }
